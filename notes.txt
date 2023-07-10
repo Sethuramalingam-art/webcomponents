@@ -1,0 +1,47 @@
+What Are Web Components?
+Set of web platform APIs that allow us to create encapsulated HTML tags to use in web pages and web apps. 
+Web components do not require any special 3rd party libraries or frameworks but can certainly be used with them. 
+Hence web components can be used anywhere. The web components can be used in React, Angular, etc. and it is also included in the HTML specification and is native.
+
+What are the types of web components?
+There are three types of web components:
+
+Custom Elements.
+Shadow DOM.
+HTML Templates. 
+
+Create a class that extends HTMLElement using the class syntax
+Register the element using window.customElements.define() method.
+Lifecycle methods for Custom Elements:
+constructor(): This callback method is called when an instance of the element is created or upgraded
+connectedCallback(): This callback method is called every time when the element is inserted into the DOM
+disconnectedCallback(): This callback method is called every time the element is removed from the DOM.
+adoptedCallback(): This callback method is called whenever the custom element is moved to a new document.
+attributeChangedCallback(attributeName, oldValue, newValue): Called when an attribute is added, removed, 
+updated, or replaced by methods that are available to us so we have a constructor.
+
+<div>
+        <h1>Custom Element</h1>
+        <test-element></test-element> // web component
+    </div>
+  
+    <script type="text/javascript">
+        class TestElement extends HTMLElement {
+            constructor() {
+                super();
+  
+                // Setting an attribute
+                this.setAttribute('name', 'Marry');
+            }
+            connectedCallback() {
+                this.innerHTML =
+                    `<div>
+                        <p>Hello ${this.getAttribute('name')}!</p>
+                        <p>how are you</p>
+                    </div>`
+            }
+        }
+          
+        // Register the custom element
+        customElements.define('test-element', TestElement);
+    </script>
